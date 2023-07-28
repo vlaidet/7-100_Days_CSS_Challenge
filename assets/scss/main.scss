@@ -1,0 +1,184 @@
+// delete the following line if no text is used
+// edit the line if you wanna use other fonts
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:700,300,500,600);
+
+// VARIABLES
+$bg: #264057;
+$primary__color: #5f98cd;
+
+$menu__container__bg: #43627d;
+$menu__container__height: 250px;
+$menu__container__width: 170px;
+$link__item__color: #93b2cd;
+$link__item__hover__bg: #385269;
+$link__item__hover__color: #fff;
+
+$notifications__container__bg: #fff;
+$notifications__container__height: 300px;
+$notifications__container__width: 300px;
+
+$header__color: #b2daff;
+$header__hover__color: #FFF;
+$header__height: 60px;
+
+$menu__icon__height: 15px;
+$menu__icon__width: 29px;
+$menu__icon__dash__height: 3px;
+$menu__icon__radius__circle: 3.5px;
+
+// use only the available space inside the 400x400 frame
+.frame {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  height: 400px;
+  margin-top: -200px;
+  margin-left: -200px;
+  border-radius: 2px;
+  box-shadow: 4px 8px 16px 0 rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: $bg;
+  color: #333;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.main__container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.menu__container {
+  position: absolute;
+  height: $menu__container__height;
+  width: $menu__container__width;
+  top: 65px;
+  left: 50px;
+  border-radius: 3px;
+  background-color: $menu__container__bg;
+  padding: 10px 0;
+  box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transition: all 0.5s ease-in-out;
+
+  .links {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+
+  .link__item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: calc($menu__container__height / 5);
+    padding-left: 17px;
+    color: $link__item__color;
+    list-style: none;
+    box-sizing: border-box;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+
+    &:hover {
+      color: $link__item__hover__color;
+      background: $link__item__hover__bg;
+    }
+  }
+
+  .link__item span {
+    padding-left: 0.5rem;
+    font-size: 14px;
+    line-height: 14px;
+    font-weight: 500;
+    user-select: none;
+  }
+}
+
+.notifications__container {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  height: $notifications__container__height;
+  width: $notifications__container__width;
+  background-color: $notifications__container__bg;
+  border-radius: 3px;
+  z-index: 2;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: $header__height;
+    padding-inline: 1.3rem;
+    background-color: $primary__color;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+  }
+
+  .menu__icon {
+    position: relative;
+    width: $menu__icon__width;
+    height: $menu__icon__height;
+    cursor: pointer;
+  }
+
+  .menu__icon .top__dash {
+    position: absolute;
+    height: $menu__icon__dash__height;
+    width: calc(#{$menu__icon__width} / 1.45);
+    top: 0;
+    left: 0;
+    background: $header__color;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: calc(#{$menu__icon__radius__circle} / 2 * -1);
+      right: calc(((#{$menu__icon__radius__circle} / 2) + (#{$menu__icon__width} - (#{$menu__icon__width} / 1.45))) * -1);
+      background-color: $header__color;
+      width: calc(#{$menu__icon__radius__circle} * 2);
+      height: calc(#{$menu__icon__radius__circle} * 2);
+      clip-path: circle($menu__icon__radius__circle);
+      transition: all .2s ease-in-out;
+    }
+  }
+
+  .menu__icon .bottom__dash {
+    position: absolute;
+    height: $menu__icon__dash__height;
+    width: $menu__icon__width;
+    bottom: 0;
+    left: 0;
+    background: $header__color;
+    border-radius: 3px;
+    transition: all .2s ease-in-out;
+  }
+
+  .menu__icon:hover .top__dash,
+  .menu__icon:hover .top__dash::after,
+  .menu__icon:hover .bottom__dash {
+    background-color: $header__hover__color;
+  }
+
+  .header h1 {
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .header i {
+    color: $header__color;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+
+    &:hover {
+      color: $header__hover__color;
+    }
+  }
+}
