@@ -25,6 +25,7 @@ $menu__icon__height: 15px;
 $menu__icon__width: 29px;
 $menu__icon__dash__height: 3px;
 $menu__icon__radius__circle: 3.5px;
+$title__color: #FFF;
 
 // use only the available space inside the 400x400 frame
 .frame {
@@ -51,6 +52,14 @@ $menu__icon__radius__circle: 3.5px;
   height: 100%;
 }
 
+.main__container.show .menu__container {
+  transform: translate3d(0, 0, 0);
+}
+
+.main__container.show .panel__container {
+  transform: translate3d(150px, 0, 0);
+}
+
 .menu__container {
   position: absolute;
   height: $menu__container__height;
@@ -62,7 +71,8 @@ $menu__icon__radius__circle: 3.5px;
   padding: 10px 0;
   box-shadow: 5px 5px 8px 0 rgba(0, 0, 0, 0.2);
   z-index: 1;
-  transition: all 0.5s ease-in-out;
+  transition: all .5s ease-in-out;
+  transform: translate3d(20px, 0, 0);
 
   .links {
     padding: 0;
@@ -97,14 +107,15 @@ $menu__icon__radius__circle: 3.5px;
   }
 }
 
-.notifications__container {
-  position: absolute;
+.panel__container {
+  position: relative;
   top: 50px;
   left: 50px;
   height: $notifications__container__height;
   width: $notifications__container__width;
   background-color: $notifications__container__bg;
   border-radius: 3px;
+  transition: all .5s ease-in-out;
   z-index: 2;
 
   .header {
@@ -165,9 +176,9 @@ $menu__icon__radius__circle: 3.5px;
     background-color: $header__hover__color;
   }
 
-  .header h1 {
-    color: #fff;
-    font-size: 1rem;
+  .header .title {
+    color: $title__color;
+    font-size: 15px;
     font-weight: 600;
   }
 
@@ -180,5 +191,88 @@ $menu__icon__radius__circle: 3.5px;
     &:hover {
       color: $header__hover__color;
     }
+  }
+
+  .notifications__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    float: right;
+    width: calc(100% - 27px);
+    height: calc(100% - #{$header__height});
+    overflow: hidden;
+    padding: 25px 10px 25px 0;
+    row-gap: 25px;
+    box-sizing: border-box;
+    border-left: 3px solid #EBEBEB;
+
+    .notification {
+      height: calc(100%  / 3);
+      width: 100%;
+      color: #666666;
+      transition: all .2s ease-in-out;
+
+      &:hover {
+        color: #5F98CD;
+        cursor: pointer;
+      }
+
+      &:first-child {
+        animation: fade-in-up 0.5s ease-out 0.4s;
+      }
+
+      &:nth-child(2) {
+        animation: fade-in-up 0.5s ease-out 0.6s;
+      }
+
+      &:last-child {
+        animation: fade-in-up 0.5s ease-out 0.8s;
+      }
+    }
+
+    .notification .circle {
+      position: absolute;
+      left: 23px;
+      height: 7px;
+      width: 7px;
+      background-color: #FFF;
+      box-shadow: 0 0 0 3px #fff;
+      border: 2px solid #5F98CD;
+      border-radius: 50%;
+    }
+
+    .notification .time {
+      margin: -3px 0 0 0;
+      padding-left: 1rem;
+      font-size: .7rem;
+      font-weight: 300;
+    }
+
+    .notification .message {
+      margin: 0;
+      padding-left: 1rem;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 20px;
+    }
+
+    .notification .message span {
+      font-weight: 600;
+    }
+  }
+}
+
+// Animations
+
+@keyframes fade-in-up {
+  0% {
+    transform: translate3d(0, 50px, 0);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
   }
 }
