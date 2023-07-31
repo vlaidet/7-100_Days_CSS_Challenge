@@ -84,7 +84,7 @@ $title__color: #FFF;
     display: flex;
     align-items: center;
     width: 100%;
-    height: calc($menu__container__height / 5);
+    height: calc(#{$menu__container__height} / 5);
     padding-left: 17px;
     color: $link__item__color;
     list-style: none;
